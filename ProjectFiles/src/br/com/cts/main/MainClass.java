@@ -17,33 +17,44 @@ public class MainClass {
 		String dir = JOptionPane.showInputDialog("Digite o diretório:");
 		String alterTag = JOptionPane.showInputDialog("Digite as alterações que deseja fazer:");
 		
-		dir = dir.replace("\\", "//");
-		
-		try {
-			if (alterTag.indexOf('1') > -1){
-				startSetFileChar(dir);
-				Thread.sleep(2000);
+		if (!dir.equals(null) && !alterTag.equals(null) && !dir.equals("") && !alterTag.equals("")){
+			dir = dir.replace("\\", "//");
+			
+			try {
+				//Opção 1: realizar as substituições definidas no aquivo FileHandler.java
+				if (alterTag.indexOf('1') > -1){
+					startSetFileChar(dir);
+					Thread.sleep(2000);
+				}
+				//Opção 2: colocar primeira letra de cada palavra do nome do arquivo em maiúscula
+				if (alterTag.indexOf('2') > -1){
+					startSetFileUpper(dir);
+					Thread.sleep(2000);
+				}
+				//Opção 3: colocar primeira letra de cada palavra da propriedade title em maiúscula
+				if (alterTag.indexOf('3') > -1){
+					startSetEachTitleFirstLetter(dir);
+					Thread.sleep(2000);
+				}
+				//Opção 4: setar o atributo title
+				if (alterTag.indexOf('4') > -1){
+					startSetEmptyName(dir);
+					Thread.sleep(2000);
+				}
+				//Opção 5: setar o atributo number
+				if (alterTag.indexOf('5') > -1){
+					startSetSongNumber(dir);
+					Thread.sleep(2000);
+				}
+			} catch (IOException | TagException | InterruptedException e) {
+				e.printStackTrace();
 			}
-			if (alterTag.indexOf('2') > -1){
-				startSetFileUpper(dir);
-				Thread.sleep(2000);
-			}
-			if (alterTag.indexOf('3') > -1){
-				startSetEachTitleFirstLetter(dir);
-				Thread.sleep(2000);
-			}
-			if (alterTag.indexOf('4') > -1){
-				startSetEmptyName(dir);
-				Thread.sleep(2000);
-			}
-			if (alterTag.indexOf('5') > -1){
-				startSetSongNumber(dir);
-				Thread.sleep(2000);
-			}
-		} catch (IOException | TagException | InterruptedException e) {
-			e.printStackTrace();
+			
+			JOptionPane.showMessageDialog(null, "Fim dos Ajustes!");
 		}
-		JOptionPane.showMessageDialog(null, "Fim dos Ajustes!");
+		else{
+			JOptionPane.showMessageDialog(null, "Nenhum ajuste a ser realizado!");
+		}
 	}
 	
 	public static void startSetFileChar(String dir){
