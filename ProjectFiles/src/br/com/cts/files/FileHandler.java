@@ -1,3 +1,10 @@
+/*
+ * Classe: FileHandler
+ * Descrição: Classe responsável por manusear arquivos de música em MP3,
+ * editar tags e informações do arquivo.
+ * Autor: Renato Daniel Santana Santos
+ */
+
 package br.com.cts.files;
 
 import java.io.File;
@@ -9,13 +16,6 @@ import org.farng.mp3.TagException;
 import org.jaudiotagger.audio.AudioFileIO;
 import org.jaudiotagger.tag.FieldKey;
 import org.jaudiotagger.tag.Tag;*/
-
-/*
- * Classe: FileHandler
- * Descrição: Classe responsável por manusear arquivos de música em MP3,
- * editar tags e informações do arquivo.
- * Autor: Renato Daniel Santana Santos
- */
 
 public class FileHandler {
 	private String stringPath;
