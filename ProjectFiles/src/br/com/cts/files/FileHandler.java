@@ -75,117 +75,118 @@ public class FileHandler {
 		for (int i = 0; i < listOfFiles.length; i++) {
 			String musica = "";
 			musica = listOfFiles[i].getName();
-			
-			//BEGIN - REPLACES
-			//musica = musica.replaceFirst(musica.substring(0, 2), "");
-			//musica = musica.replaceFirst('\\' + musica.substring(2, 3), " - ");
-			//musica = musica.replaceFirst(musica.substring(0, 2), "");
-			//Remover string no final do nome do arquivo
-			
-			//musica = musica.replaceFirst(" \\(2012 - Remaster\\)", "");
-			//musica = musica.replaceFirst("Deep Purple -", "");
-			//musica = musica.replaceFirst("-deep_purple-", " - ");
-			//musica = musica.replaceFirst(musica.substring(0, 1), "");
-			//musica = musica.replaceFirst("Deep Purple -", "");
-			//musica = musica.replaceFirst("Pato Fu -", "");
-			
-			//Inserir número no nome do arquivo que não o tem
-			/*MP3File mp3;
-			try {
-				mp3 = new MP3File(stringPath + musica);
-				String numero = mp3.getID3v2Tag().getTrackNumberOnAlbum();
+			if(musica.substring(musica.length()-4, musica.length()).toLowerCase().equals(".mp3")){
+				//BEGIN - REPLACES
+				//musica = musica.replaceFirst(musica.substring(0, 2), "");
+				//musica = musica.replaceFirst('\\' + musica.substring(2, 3), " - ");
+				//musica = musica.replaceFirst(musica.substring(0, 2), "");
+				//Remover string no final do nome do arquivo
 				
-				if (numero.length() > 1)
-					musica = musica.replaceFirst(musica.substring(0, 1), numero + " - " + musica.substring(0, 1));
-				else
-					musica = musica.replaceFirst(musica.substring(0, 1), "0" + numero + " - " + musica.substring(0, 1));
-			} catch (IOException e) {
-				e.printStackTrace();
-			} catch (TagException e) {
-				e.printStackTrace();
-			}*/
-			
-			//musica = musica.replaceFirst(" \\(Ao Vivo\\)", "");
-			//musica = musica.replaceFirst(" ", " - ");
-			//musica = musica.replaceFirst(" ", " - ");
-			//musica = musica.replaceFirst(musica.substring(0, 2), musica.substring(0, 2) + " - ");
-			musica = musica.replaceFirst(" ", " - ");
-			//musica = musica.replaceAll("_", " ");
-			//musica = musica.replaceAll("-", " ");
-			//musica = musica.replaceFirst("\\[", "\\(");
-			//musica = musica.replaceFirst("\\]", "\\)");
-			//musica = musica.replaceAll("_", " ");
-			
-			/*musica = musica.replaceFirst(musica.substring(musica.length() - 13, musica.length()), ".mp3");
-			
-			musica = musica.replaceFirst("-depeche_mode-", " - ");
-			
-			musica = musica.replaceAll("_", " ");*/
-			
-			//musica = musica.replaceFirst("\\- \\(Camenhas\\)", "");
-			
-			//Teste JTagger
-			/*try {
-				File testFile = new File(stringPath + musica);
-				AudioFile f = AudioFileIO.read(testFile);
-				Tag tag = f.getTag();
-				tag.setField(FieldKey.ARTIST,"Kings of Leon");
-				AudioFileIO.write(f);
-			} catch (Exception e){
-				e.printStackTrace();
-			}*/
-			
-			//musica = musica.replaceFirst("\\(album_version\\)", "");
-			//musica = musica.replaceAll("_", " ");
-			
-			//musica = musica.replaceFirst(" \\[Bonus Track\\]", "");
-			//musica = musica.replaceAll("\\[", "\\(");
-			//musica = musica.replaceAll("\\]", "\\)");
-			//musica = musica.replaceFirst("_\\(remastered\\)", "");
-			//musica = musica.replaceFirst("_\\(live\\)", "");
-			
-			//Substituir número no início do nome do arquivo
-			/*if (Integer.valueOf(musica.substring(0, 2))-12 < 10)
-				musica = musica.replaceFirst(musica.substring(0, 2), "0" + String.valueOf(Integer.valueOf(musica.substring(0, 2))-28));
-			else
-				musica = musica.replaceFirst(musica.substring(0, 2), String.valueOf(Integer.valueOf(musica.substring(0, 2))-28));
-			musica = musica.replaceAll("_", " ");*/
-			//Substituir número no início do nome do arquivo
-			
-			//musica = musica.replaceFirst("Mtv", "MTV".toUpperCase());
-			//musica = musica.replace("Muse - ", "");
-			//musica = musica.replace("In Flames-", "");
-			//musica = musica.replace("dream theater  -  ", "");
-			//musica = musica.replace("Pearl Jam - ", "");
-			//musica = musica.replaceFirst("-ser", "");
-			
-			/*String fullFilePath = stringPath + musica;
-			try {
-				MP3File mp3 = new MP3File(fullFilePath);
-				int track = 0;
+				//musica = musica.replaceFirst(" \\(2012 - Remaster\\)", "");
+				//musica = musica.replaceFirst("Deep Purple -", "");
+				//musica = musica.replaceFirst("-deep_purple-", " - ");
+				//musica = musica.replaceFirst(musica.substring(0, 1), "");
+				//musica = musica.replaceFirst("Deep Purple -", "");
+				//musica = musica.replaceFirst("Pato Fu -", "");
 				
-				try{
-					track = Integer.valueOf(mp3.getID3v2Tag().getTrackNumberOnAlbum().substring(0, 2));
+				//Inserir número no nome do arquivo que não o tem
+				/*MP3File mp3;
+				try {
+					mp3 = new MP3File(stringPath + musica);
+					String numero = mp3.getID3v2Tag().getTrackNumberOnAlbum();
+					
+					if (numero.length() > 1)
+						musica = musica.replaceFirst(musica.substring(0, 1), numero + " - " + musica.substring(0, 1));
+					else
+						musica = musica.replaceFirst(musica.substring(0, 1), "0" + numero + " - " + musica.substring(0, 1));
+				} catch (IOException e) {
+					e.printStackTrace();
+				} catch (TagException e) {
+					e.printStackTrace();
+				}*/
+				
+				//musica = musica.replaceFirst(" \\(Ao Vivo\\)", "");
+				//musica = musica.replaceFirst(" ", " - ");
+				//musica = musica.replaceFirst(" ", " - ");
+				//musica = musica.replaceFirst(musica.substring(0, 2), musica.substring(0, 2) + " - ");
+				musica = musica.replaceFirst(" ", " - ");
+				//musica = musica.replaceAll("_", " ");
+				//musica = musica.replaceAll("-", " ");
+				//musica = musica.replaceFirst("\\[", "\\(");
+				//musica = musica.replaceFirst("\\]", "\\)");
+				//musica = musica.replaceAll("_", " ");
+				
+				/*musica = musica.replaceFirst(musica.substring(musica.length() - 13, musica.length()), ".mp3");
+				
+				musica = musica.replaceFirst("-depeche_mode-", " - ");
+				
+				musica = musica.replaceAll("_", " ");*/
+				
+				//musica = musica.replaceFirst("\\- \\(Camenhas\\)", "");
+				
+				//Teste JTagger
+				/*try {
+					File testFile = new File(stringPath + musica);
+					AudioFile f = AudioFileIO.read(testFile);
+					Tag tag = f.getTag();
+					tag.setField(FieldKey.ARTIST,"Kings of Leon");
+					AudioFileIO.write(f);
 				} catch (Exception e){
-					track = Integer.valueOf(mp3.getID3v2Tag().getTrackNumberOnAlbum().substring(0, 1));
-				}
+					e.printStackTrace();
+				}*/
 				
-				if (track < 10 && track > 0){
-					musica = musica.replace(musica.substring(0, 2), "0" + String.valueOf(track));
-				}
-				else if (track >= 10 && track > 0) {
-					musica = musica.replace(musica.substring(0, 2), String.valueOf(track));
-				}
-			} catch (IOException | TagException e) {
-				e.printStackTrace();
-			}*/
-			
-			//END - REPLACES
-			
-			
-			File newNameFile = new File(stringPath + musica);
-			listOfFiles[i].renameTo(newNameFile);
-		} //fim do laço for de iteração das músicas
+				//musica = musica.replaceFirst("\\(album_version\\)", "");
+				//musica = musica.replaceAll("_", " ");
+				
+				//musica = musica.replaceFirst(" \\[Bonus Track\\]", "");
+				//musica = musica.replaceAll("\\[", "\\(");
+				//musica = musica.replaceAll("\\]", "\\)");
+				//musica = musica.replaceFirst("_\\(remastered\\)", "");
+				//musica = musica.replaceFirst("_\\(live\\)", "");
+				
+				//Substituir número no início do nome do arquivo
+				/*if (Integer.valueOf(musica.substring(0, 2))-12 < 10)
+					musica = musica.replaceFirst(musica.substring(0, 2), "0" + String.valueOf(Integer.valueOf(musica.substring(0, 2))-28));
+				else
+					musica = musica.replaceFirst(musica.substring(0, 2), String.valueOf(Integer.valueOf(musica.substring(0, 2))-28));
+				musica = musica.replaceAll("_", " ");*/
+				//Substituir número no início do nome do arquivo
+				
+				//musica = musica.replaceFirst("Mtv", "MTV".toUpperCase());
+				//musica = musica.replace("Muse - ", "");
+				//musica = musica.replace("In Flames-", "");
+				//musica = musica.replace("dream theater  -  ", "");
+				//musica = musica.replace("Pearl Jam - ", "");
+				//musica = musica.replaceFirst("-ser", "");
+				
+				/*String fullFilePath = stringPath + musica;
+				try {
+					MP3File mp3 = new MP3File(fullFilePath);
+					int track = 0;
+					
+					try{
+						track = Integer.valueOf(mp3.getID3v2Tag().getTrackNumberOnAlbum().substring(0, 2));
+					} catch (Exception e){
+						track = Integer.valueOf(mp3.getID3v2Tag().getTrackNumberOnAlbum().substring(0, 1));
+					}
+					
+					if (track < 10 && track > 0){
+						musica = musica.replace(musica.substring(0, 2), "0" + String.valueOf(track));
+					}
+					else if (track >= 10 && track > 0) {
+						musica = musica.replace(musica.substring(0, 2), String.valueOf(track));
+					}
+				} catch (IOException | TagException e) {
+					e.printStackTrace();
+				}*/
+				
+				//END - REPLACES
+				
+				
+				File newNameFile = new File(stringPath + musica);
+				listOfFiles[i].renameTo(newNameFile);
+			} //fim do laço for de iteração das músicas
+		}
 	}
 	
 	//Método responsável por tornar maiúscula, a primeira letra de cada palavra do nome do arquivo musical
@@ -195,19 +196,21 @@ public class FileHandler {
 			String newName = listOfFiles[i].getName();
 			//Laço responsável por iterar em cada caracter de um arquivo de música determinado pelo índice do
 			//do laço anterior
-			for (int j = 0; j < listOfFiles[i].getName().length(); j++){
-				//Condicional responsável por procurar a primeira letra de uma palavra e seé um caracter válido
-				if (listOfFiles[i].getName().substring(j, j+1).equals(" ") && !listOfFiles[i].getName().substring(j+1, j+2).equals("(")){
-					String replaceString = newName.substring(j, j+2); //Obtendo a primeira letra da palavra
-					newName = newName.replaceFirst(replaceString, replaceString.toUpperCase()); //tornando a primeira letra da palavra maiúscula
-					File newNameFile = new File(stringPath + newName); //Obtendo o caminho completo do arquivo
-					listOfFiles[i].renameTo(newNameFile); //renomeando o nome do arquivo
-					//Se o caracter encontrado for um parênteses, tornar o próximo caracter maiúsculo
-				} else if (listOfFiles[i].getName().substring(j, j+1).equals("(")){
-					String replaceString = newName.substring(j, j+2);
-					newName = newName.replaceFirst('\\' + replaceString, '\\' + replaceString.toUpperCase());
-					File newNameFile = new File(stringPath + newName);
-					listOfFiles[i].renameTo(newNameFile);
+			if (listOfFiles[i].getName().substring(listOfFiles[i].getName().length()-4, listOfFiles[i].getName().length()).toLowerCase().equals(".mp3")){
+				for (int j = 0; j < listOfFiles[i].getName().length(); j++){
+					//Condicional responsável por procurar a primeira letra de uma palavra e seé um caracter válido
+					if (listOfFiles[i].getName().substring(j, j+1).equals(" ") && !listOfFiles[i].getName().substring(j+1, j+2).equals("(")){
+						String replaceString = newName.substring(j, j+2); //Obtendo a primeira letra da palavra
+						newName = newName.replaceFirst(replaceString, replaceString.toUpperCase()); //tornando a primeira letra da palavra maiúscula
+						File newNameFile = new File(stringPath + newName); //Obtendo o caminho completo do arquivo
+						listOfFiles[i].renameTo(newNameFile); //renomeando o nome do arquivo
+						//Se o caracter encontrado for um parênteses, tornar o próximo caracter maiúsculo
+					} else if (listOfFiles[i].getName().substring(j, j+1).equals("(")){
+						String replaceString = newName.substring(j, j+2);
+						newName = newName.replaceFirst('\\' + replaceString, '\\' + replaceString.toUpperCase());
+						File newNameFile = new File(stringPath + newName);
+						listOfFiles[i].renameTo(newNameFile);
+					}
 				}
 			}
 		}
@@ -222,7 +225,7 @@ public class FileHandler {
 			String fullFilePath = stringPath + musica; //concatena o caminho e o nome do arquivo musical
 			
 			//Testa se a extensão do arquivo é mp3
-			if (listOfFiles[i].getName().substring(listOfFiles[i].getName().length()-3).toLowerCase().equals("mp3")){
+			if (listOfFiles[i].getName().substring(listOfFiles[i].getName().length()-4).toLowerCase().equals(".mp3")){
 				MP3File mp3 = new MP3File(fullFilePath);
 				String newName = mp3.getID3v2Tag().getSongTitle(); //Obtém o título atual da música
 				//Laço responsável por iterar por cada letra do título de uma música
@@ -251,7 +254,7 @@ public class FileHandler {
 			musica = listOfFiles[i].getName(); //Obtém o nome de um arquivo músical
 			String fullFilePath = stringPath + musica; //Concatena o nome do arquivo musical ao caminho completo até a pasta
 			//Verifica se a extensão do arquivo é mp3
-			if (listOfFiles[i].getName().substring(listOfFiles[i].getName().length()-3).toLowerCase().equals("mp3")){
+			if (listOfFiles[i].getName().substring(listOfFiles[i].getName().length()-4).toLowerCase().equals(".mp3")){
 				MP3File mp3 = new MP3File(fullFilePath);
 				//Testa se a tag Title (título) está preenchida
 				if (mp3.getID3v2Tag().getSongTitle().isEmpty() || mp3.getID3v2Tag().getSongTitle().equals("") || mp3.getID3v2Tag().getSongTitle().equals(null)){
@@ -274,9 +277,9 @@ public class FileHandler {
 			musica = listOfFiles[i].getName(); //Obtém o nome do arquivo musical
 			String fullFilePath = stringPath + musica; //Concatena o nome do arquivo ao caminho do arquivo
 			//Testa se a extensão do arquivo é mp3
-			if (listOfFiles[i].getName().substring(listOfFiles[i].getName().length()-3).toLowerCase().equals("mp3")){
+			if (listOfFiles[i].getName().substring(listOfFiles[i].getName().length()-4).toLowerCase().equals(".mp3")){
 				MP3File mp3 = new MP3File(fullFilePath);
-				mp3.getID3v2Tag().setTrackNumberOnAlbum(String.valueOf(++i)); //Atribui o número do índice do laço à tag número
+				mp3.getID3v2Tag().setTrackNumberOnAlbum(String.valueOf(i+1)); //Atribui o número do índice do laço à tag número
 				mp3.save(); //Salva as tags modificadas
 			}
 		}
