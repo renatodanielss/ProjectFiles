@@ -1,3 +1,9 @@
+/*
+ * Classe: FormMp3
+ * Descrição: Classe de interface gráfica para comunicação com a classe principal de manipulação de arquivos MP3
+ * Autor: Renato Daniel Santana Santos
+ */
+
 package br.com.cts.view;
 
 import java.awt.EventQueue;
