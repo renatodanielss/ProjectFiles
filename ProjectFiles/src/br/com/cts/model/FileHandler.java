@@ -5,7 +5,7 @@
  * Autor: Renato Daniel Santana Santos
  */
 
-package br.com.cts.files;
+package br.com.cts.model;
 
 import java.io.File;
 import java.io.IOException;
@@ -109,7 +109,7 @@ public class FileHandler {
 				//musica = musica.replaceFirst(" ", " - ");
 				//musica = musica.replaceFirst(" ", " - ");
 				//musica = musica.replaceFirst(musica.substring(0, 2), musica.substring(0, 2) + " - ");
-				musica = musica.replaceFirst(" ", " - ");
+				//musica = musica.replaceFirst(" ", " - ");
 				//musica = musica.replaceAll("_", " ");
 				//musica = musica.replaceAll("-", " ");
 				//musica = musica.replaceFirst("\\[", "\\(");

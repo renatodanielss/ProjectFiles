@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 
 import org.farng.mp3.TagException;
 
-import br.com.cts.files.FileHandler;
+import br.com.cts.model.FileHandler;
 
 public class MainClass {
 	public static void main(String[] args){
