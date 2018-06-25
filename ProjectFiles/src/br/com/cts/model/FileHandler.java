@@ -1,7 +1,7 @@
 /*
  * Classe: FileHandler
- * Descrição: Classe responsável por manusear arquivos de música em MP3,
- * editar tags e informações do arquivo.
+ * DescriÃ§Ã£o: Classe responsÃ¡vel por manusear arquivos de mÃºsica em MP3,
+ * editar tags e informaÃ§Ãµes do arquivo.
  * Autor: Renato Daniel Santana Santos
  */
 
@@ -9,6 +9,7 @@ package br.com.cts.model;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import org.farng.mp3.MP3File;
 import org.farng.mp3.TagException;
@@ -23,11 +24,10 @@ public class FileHandler {
 	private File[] listOfFiles;
 	
 	public FileHandler(){
-		super();
+		
 	}
 	
 	public FileHandler(String dir){
-		super();
 		this.stringPath = dir + "/";
 		this.folder = new File(dir);
 		this.listOfFiles = folder.listFiles();
@@ -58,7 +58,7 @@ public class FileHandler {
 	}
 
 	
-	//Método responsável por listar arquivos de música num pasta e exibir o nome dos arquivos
+	//MÃ©todo responsÃ¡vel por listar arquivos de mÃºsica num pasta e exibir o nome dos arquivos
 	public void filesList(String dir){
 		for (int i = 0; i < listOfFiles.length; i++) {
 			if (listOfFiles[i].isFile()) {
@@ -69,16 +69,20 @@ public class FileHandler {
 		}
 	}
 	
-	//Método responsável por substituir caracteres no nome do arquivos
+	//MÃ©todo responsÃ¡vel por substituir caracteres no nome do arquivos
 	public void replaceStringInFiles(){
-		//Laço responsável por realizar a iteração em cada arquivo de música e realizar as substituições
+		//LaÃ§o responsÃ¡vel por realizar a iteraÃ§Ã£o em cada arquivo de mÃºsica e realizar as substituiï¿½ï¿½es
 		for (int i = 0; i < listOfFiles.length; i++) {
 			String musica = "";
 			musica = listOfFiles[i].getName();
 			if(musica.substring(musica.length()-4, musica.length()).toLowerCase().equals(".mp3")){
 				//BEGIN - REPLACES
 				//musica = musica.replaceFirst(musica.substring(0, 2), "");
-				//musica = musica.replaceFirst('\\' + musica.substring(2, 3), " - ");
+				musica = musica.replaceFirst(" ", " - ");
+				//musica = musica.replaceFirst("\\[", "\\(");
+				//musica = musica.replaceFirst("\\]", "\\)");
+				//musica = musica.replaceAll("_", " ");
+				//musica = musica.replaceFirst(musica.substring(musica.length()-13, musica.length()-4), "");
 				//musica = musica.replaceFirst(musica.substring(0, 2), "");
 				//Remover string no final do nome do arquivo
 				
@@ -89,7 +93,7 @@ public class FileHandler {
 				//musica = musica.replaceFirst("Deep Purple -", "");
 				//musica = musica.replaceFirst("Pato Fu -", "");
 				
-				//Inserir número no nome do arquivo que não o tem
+				//Inserir nÃºmero no nome do arquivo que nÃ£o o tem
 				/*MP3File mp3;
 				try {
 					mp3 = new MP3File(stringPath + musica);
@@ -144,13 +148,13 @@ public class FileHandler {
 				//musica = musica.replaceFirst("_\\(remastered\\)", "");
 				//musica = musica.replaceFirst("_\\(live\\)", "");
 				
-				//Substituir número no início do nome do arquivo
+				//Substituir nï¿½mero no inï¿½cio do nome do arquivo
 				/*if (Integer.valueOf(musica.substring(0, 2))-12 < 10)
 					musica = musica.replaceFirst(musica.substring(0, 2), "0" + String.valueOf(Integer.valueOf(musica.substring(0, 2))-28));
 				else
 					musica = musica.replaceFirst(musica.substring(0, 2), String.valueOf(Integer.valueOf(musica.substring(0, 2))-28));
 				musica = musica.replaceAll("_", " ");*/
-				//Substituir número no início do nome do arquivo
+				//Substituir nï¿½mero no inï¿½cio do nome do arquivo
 				
 				//musica = musica.replaceFirst("Mtv", "MTV".toUpperCase());
 				//musica = musica.replace("Muse - ", "");
@@ -185,26 +189,52 @@ public class FileHandler {
 				
 				File newNameFile = new File(stringPath + musica);
 				listOfFiles[i].renameTo(newNameFile);
-			} //fim do laço for de iteração das músicas
+			} //fim do laï¿½o for de iteraï¿½ï¿½o das mï¿½sicas
 		}
 	}
 	
-	//Método responsável por tornar maiúscula, a primeira letra de cada palavra do nome do arquivo musical
+	//MÃ©todo responsÃ¡vel por substituir caracteres no nome do arquivos
+	public void replaceStringInFiles(List<ReplaceString> replaceStrings){
+		//LaÃ§o responsÃ¡vel por realizar a iteraÃ§Ã£o em cada arquivo de mÃºsica e realizar as substituiï¿½ï¿½es
+		for (int i = 0; i < listOfFiles.length; i++) {
+			String musica = "";
+			musica = listOfFiles[i].getName();
+			//Verifica se Ã© mp3
+			if(musica.substring(musica.length()-4, musica.length()).toLowerCase().equals(".mp3")){
+				//LaÃ§o para iterar entre as opÃ§Ãµes
+				for (ReplaceString replaceString : replaceStrings){
+					switch (replaceString.getTypeOfReplace()) {
+					case "replaceFirst":
+						musica = musica.replaceFirst(replaceString.getReplaceString(), replaceString.getNewString());
+						break;
+					case "replaceAll":
+						musica = musica.replaceAll(replaceString.getReplaceString(), replaceString.getNewString());
+						break;
+					}
+				}
+				
+				File newNameFile = new File(stringPath + musica);
+				listOfFiles[i].renameTo(newNameFile);
+			} //fim do laÃ§o for de iteraÃ§Ã£o das mÃºsicas
+		}
+	}
+	
+	//MÃ©todo responsÃ¡vel por tornar maiÃºscula, a primeira letra de cada palavra do nome do arquivo musical
 	public void eachFirstLetterUpperCase(){
-		//Laço responsável por iterar em cada arquivo de música
+		//LaÃ§o responsÃ¡vel por iterar em cada arquivo de mÃºsica
 		for (int i = 0; i < listOfFiles.length; i++){
 			String newName = listOfFiles[i].getName();
-			//Laço responsável por iterar em cada caracter de um arquivo de música determinado pelo índice do
-			//do laço anterior
+			//LaÃ§o responsÃ¡vel por iterar em cada caracter de um arquivo de mÃºsica determinado pelo Ã­ndice do
+			//do laÃ§o anterior
 			if (listOfFiles[i].getName().substring(listOfFiles[i].getName().length()-4, listOfFiles[i].getName().length()).toLowerCase().equals(".mp3")){
 				for (int j = 0; j < listOfFiles[i].getName().length(); j++){
-					//Condicional responsável por procurar a primeira letra de uma palavra e seé um caracter válido
+					//Condicional responsÃ¡vel por procurar a primeira letra de uma palavra e se Ã© um caracter vÃ¡lido
 					if (listOfFiles[i].getName().substring(j, j+1).equals(" ") && !listOfFiles[i].getName().substring(j+1, j+2).equals("(")){
 						String replaceString = newName.substring(j, j+2); //Obtendo a primeira letra da palavra
-						newName = newName.replaceFirst(replaceString, replaceString.toUpperCase()); //tornando a primeira letra da palavra maiúscula
+						newName = newName.replaceFirst(replaceString, replaceString.toUpperCase()); //tornando a primeira letra da palavra maiÃºscula
 						File newNameFile = new File(stringPath + newName); //Obtendo o caminho completo do arquivo
 						listOfFiles[i].renameTo(newNameFile); //renomeando o nome do arquivo
-						//Se o caracter encontrado for um parênteses, tornar o próximo caracter maiúsculo
+						//Se o caracter encontrado for um parÃªnteses, tornar o prÃ³ximo caracter maiÃºsculo
 					} else if (listOfFiles[i].getName().substring(j, j+1).equals("(")){
 						String replaceString = newName.substring(j, j+2);
 						newName = newName.replaceFirst('\\' + replaceString, '\\' + replaceString.toUpperCase());
@@ -216,27 +246,27 @@ public class FileHandler {
 		}
 	}
 	
-	//Método responsável por tornar maiúscula, a primeira letra de cada palavra da tag título do arquivo musical
+	//MÃ©todo responsÃ¡vel por tornar maiÃºscula, a primeira letra de cada palavra da tag tÃ­tulo do arquivo musical
 	public void eachSongTitleFirstLetterUpperCase() throws IOException, TagException{
-		//Laço responsável por iterar por cada arquivo musical da pasta
+		//LaÃ§o responsÃ¡vel por iterar por cada arquivo musical da pasta
 		for (int i = 0; i < listOfFiles.length; i++) {
 			String musica = "";
-			musica = listOfFiles[i].getName(); //obtém o nome do arquivo musical
+			musica = listOfFiles[i].getName(); //obtÃ©m o nome do arquivo musical
 			String fullFilePath = stringPath + musica; //concatena o caminho e o nome do arquivo musical
 			
-			//Testa se a extensão do arquivo é mp3
+			//Testa se a extensÃ£o do arquivo Ã© mp3
 			if (listOfFiles[i].getName().substring(listOfFiles[i].getName().length()-4).toLowerCase().equals(".mp3")){
 				MP3File mp3 = new MP3File(fullFilePath);
-				String newName = mp3.getID3v2Tag().getSongTitle(); //Obtém o título atual da música
-				//Laço responsável por iterar por cada letra do título de uma música
+				String newName = mp3.getID3v2Tag().getSongTitle(); //ObtÃ©m o tÃ­tulo atual da mÃºsica
+				//LaÃ§o responsÃ¡vel por iterar por cada letra do tÃ­tulo de uma mÃºsica
 				for (int j = 0; j < mp3.getID3v2Tag().getSongTitle().length(); j++){
-					//procura a primeira letra de cada palavra do título de uma música e verifica se
-					//o caracter é um letra
+					//procura a primeira letra de cada palavra do tÃ­tulo de uma mÃºsica e verifica se
+					//o caracter Ã© um letra
 					if (mp3.getID3v2Tag().getSongTitle().substring(j, j+1).equals(" ") && !mp3.getID3v2Tag().getSongTitle().substring(j+1, j+2).equals("(")){
-						String replaceString = mp3.getID3v2Tag().getSongTitle().substring(j, j+2); //Obtém a primeira letra da palavra
-						newName = newName.replaceFirst(replaceString, replaceString.toUpperCase()); //Substitui a letra pela versão maiúscula
-						mp3.getID3v2Tag().setSongTitle(newName); //Renomeia o arquivo com as primeiras letras de cada palavra em maiúscula
-						mp3.save(); //Salva as alterações realizadas nas tags
+						String replaceString = mp3.getID3v2Tag().getSongTitle().substring(j, j+2); //ObtÃ©m a primeira letra da palavra
+						newName = newName.replaceFirst(replaceString, replaceString.toUpperCase()); //Substitui a letra pela versÃ£o maiÃºscula
+						mp3.getID3v2Tag().setSongTitle(newName); //Renomeia o arquivo com as primeiras letras de cada palavra em maiÃºscula
+						mp3.save(); //Salva as alteraÃ§Ãµes realizadas nas tags
 					}
 				}
 			}
@@ -244,42 +274,42 @@ public class FileHandler {
 	}
 	
 	/*
-	 * Mètodo responsável por atribuir o nome do arquivo musical à tag title (título) em arquivos os quais
-	 * a tag title não está preenchida
+	 * MÃ©todo responsÃ¡vel por atribuir o nome do arquivo musical ï¿½ tag title (tÃ­tulo) em arquivos os quais
+	 * a tag title nÃ£o estÃ¡ preenchida
 	 */
 	public void eachSongTitleFromFileName() throws IOException, TagException{
-		//Laço responsável por iterar em cada arquivo musical de uma pasta
+		//LaÃ§o responsÃ¡vel por iterar em cada arquivo musical de uma pasta
 		for (int i = 0; i < listOfFiles.length; i++) {
 			String musica = "";
-			musica = listOfFiles[i].getName(); //Obtém o nome de um arquivo músical
-			String fullFilePath = stringPath + musica; //Concatena o nome do arquivo musical ao caminho completo até a pasta
-			//Verifica se a extensão do arquivo é mp3
+			musica = listOfFiles[i].getName(); //ObtÃ©m o nome de um arquivo mÃºsical
+			String fullFilePath = stringPath + musica; //Concatena o nome do arquivo musical ao caminho completo atÃ© a pasta
+			//Verifica se a extensÃ£o do arquivo Ã© mp3
 			if (listOfFiles[i].getName().substring(listOfFiles[i].getName().length()-4).toLowerCase().equals(".mp3")){
 				MP3File mp3 = new MP3File(fullFilePath);
-				//Testa se a tag Title (título) está preenchida
+				//Testa se a tag Title (tÃ­tulo) estÃ¡ preenchida
 				if (mp3.getID3v2Tag().getSongTitle().isEmpty() || mp3.getID3v2Tag().getSongTitle().equals("") || mp3.getID3v2Tag().getSongTitle().equals(null)){
-					String newName = listOfFiles[i].getName().substring(5, listOfFiles[i].getName().length()-4); //Obtém o nome do arquivos sem a extensão (.mp3) e sem o número da música
-					mp3.getID3v2Tag().setSongTitle(newName); //Atribui o nome do arquivo à tag title
-					mp3.save(); //Salva as alterações realizadas nas tags do arquivo musical
+					String newName = listOfFiles[i].getName().substring(5, listOfFiles[i].getName().length()-4); //ObtÃ©m o nome do arquivos sem a extensÃ£o (.mp3) e sem o nÃºmero da mÃºsica
+					mp3.getID3v2Tag().setSongTitle(newName); //Atribui o nome do arquivo Ã  tag title
+					mp3.save(); //Salva as alteraÃ§Ãµes realizadas nas tags do arquivo musical
 				}
 			}
 		}
 	}
 	
 	/*
-	 * Atribui um número à tag número dos arquivos de acordo com a ordem alfabética em que elas estão dispostas
+	 * Atribui um nÃºmero Ã  tag nÃºmero dos arquivos de acordo com a ordem alfabÃ©tica em que elas estÃ£o dispostas
 	 * na pasta
 	 */
 	public void eachSongNumber() throws IOException, TagException{
-		//Laço responsável por iterar cada arquivo musical
+		//LaÃ§o responsÃ¡vel por iterar cada arquivo musical
 		for (int i = 0; i < listOfFiles.length; i++) {
 			String musica = "";
-			musica = listOfFiles[i].getName(); //Obtém o nome do arquivo musical
+			musica = listOfFiles[i].getName(); //ObtÃ©m o nome do arquivo musical
 			String fullFilePath = stringPath + musica; //Concatena o nome do arquivo ao caminho do arquivo
-			//Testa se a extensão do arquivo é mp3
+			//Testa se a extensÃ£o do arquivo Ã© mp3
 			if (listOfFiles[i].getName().substring(listOfFiles[i].getName().length()-4).toLowerCase().equals(".mp3")){
 				MP3File mp3 = new MP3File(fullFilePath);
-				mp3.getID3v2Tag().setTrackNumberOnAlbum(String.valueOf(i+1)); //Atribui o número do índice do laço à tag número
+				mp3.getID3v2Tag().setTrackNumberOnAlbum(String.valueOf(i+1)); //Atribui o nÃºmero do Ã­ndice do laÃ§o Ã  tag nÃºmero
 				mp3.save(); //Salva as tags modificadas
 			}
 		}

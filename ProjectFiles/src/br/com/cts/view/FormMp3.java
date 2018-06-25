@@ -1,6 +1,6 @@
 /*
  * Classe: FormMp3
- * DescriÁ„o: Classe de interface gr·fica para comunicaÁ„o com a classe principal de manipulaÁ„o de arquivos MP3
+ * DescriÔøΩÔøΩo: Classe de interface grÔøΩfica para comunicaÔøΩÔøΩo com a classe principal de manipulaÔøΩÔøΩo de arquivos MP3
  * Autor: Renato Daniel Santana Santos
  */
 
@@ -61,7 +61,7 @@ public class FormMp3 extends JFrame {
 		this.formMp3.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.formMp3.setBounds(100, 100, 865, 308);
 		//getContentPane().setLayout(null);
-		//setar tamanho mÌnimo do formnul·rio
+		//setar tamanho m√≠nimo do formnul√°rio
 		this.formMp3.setMinimumSize(this.getSize());
 		this.formMp3.getContentPane().setLayout(null);
 		
@@ -96,31 +96,33 @@ public class FormMp3 extends JFrame {
 					String dir = fcBanda.getCurrentDirectory().listFiles()[i].getAbsolutePath();
 					dir = dir.replace("\\", "//");
 					FileHandler fileHandler = new FileHandler(dir);
-					lblAlbum.setText("Alterando ·lbum " + fcBanda.getCurrentDirectory().listFiles()[i].getName() + ", aguarde...");
+					lblAlbum.setText("Alterando √Ålbum " + fcBanda.getCurrentDirectory().listFiles()[i].getName() + ", aguarde...");
 					int lgth = lblAlbum.getText().length() * 10;
 			        lblAlbum.setBounds(464, 189, lgth, 23);
 					try{
-						//OpÁ„o 1: realizar as substituiÁıes no nome do arquivo musical
+						//Op√ß√£o 1: realizar as substitui√ß√µes no nome do arquivo musical
 						if (cbChangeFileName.isSelected()){
 							fileHandler.replaceStringInFiles();
+							fileHandler.setListOfFiles(fileHandler.getFolder().listFiles());
 							Thread.sleep(2000);
 						}
-						//OpÁ„o 2: colocar primeira letra de cada palavra do nome do arquivo musical em mai˙scula
+						//Op√ß√£o 2: colocar primeira letra de cada palavra do nome do arquivo musical em mai√∫scula
 						if (cbFileFirstLetterUpperCase.isSelected()){
 							fileHandler.eachFirstLetterUpperCase();
+							fileHandler.setListOfFiles(fileHandler.getFolder().listFiles());
 							Thread.sleep(2000);
 						}
-						//OpÁ„o 3: colocar primeira letra de cada palavra da tag title em mai˙scula
+						//Op√ß√£o 3: colocar primeira letra de cada palavra da tag title em maiÔøΩscula
 						if (cbTagFirstLetterUpperCase.isSelected()){
 							fileHandler.eachSongTitleFirstLetterUpperCase();;
 							Thread.sleep(2000);
 						}
-						//OpÁ„o 4: setar o atributo title
+						//Op√ß√£o 4: setar o atributo title
 						if (cbSetTag.isSelected()){
 							fileHandler.eachSongTitleFromFileName();
 							Thread.sleep(2000);
 						}
-						//OpÁ„o 5: setar o atributo number
+						//Op√ß√£o 5: setar o atributo number
 						if (cbSetNumber.isSelected()){
 							fileHandler.eachSongNumber();
 							Thread.sleep(2000);
@@ -134,11 +136,10 @@ public class FormMp3 extends JFrame {
 						if (musicas[j].getName().substring(musicas[j].getName().length() - 4, musicas[j].getName().length()).equals(".mp3"))
 							System.out.println("     " + musicas[j].getName());
 					}*/
-					fileHandler = null;
 					pbMp3.setValue(i+1);
 					pbMp3.update(pbMp3.getGraphics());
 				}
-				JOptionPane.showMessageDialog(null, "AlteraÁıes Finalizadas!");
+				JOptionPane.showMessageDialog(null, "Altera√ß√µes Finalizadas!");
 				pbMp3.setVisible(false);
 				lblAlbum.setText("");
 			}

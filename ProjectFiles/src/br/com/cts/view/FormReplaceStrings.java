@@ -56,7 +56,7 @@ public class FormReplaceStrings extends JFrame {
 				FormMp3.getInstance().setVisible(true);
 			}
 		});
-		this.formReplaceStrings.setTitle("Inserir textos que serão substituídos");
+		this.formReplaceStrings.setTitle("Inserir textos que serÃ£o substituÃ­dos");
 		this.formReplaceStrings.setBounds(100, 100, 450, 212);
 		contentPane = new JPanel();
 		this.formReplaceStrings.setContentPane(contentPane);
@@ -67,15 +67,15 @@ public class FormReplaceStrings extends JFrame {
 		contentPane.add(txtReplaceString);
 		txtReplaceString.setColumns(10);
 		
-		Label lblReplaceString = new Label("Insira o texto a ser substitu\u00EDdo:");
+		Label lblReplaceString = new Label("Insira o texto a ser substituÃ­do:");
 		lblReplaceString.setBounds(26, 10, 227, 22);
 		contentPane.add(lblReplaceString);
 		
-		JRadioButton rdbtnReplaceFirst = new JRadioButton("Primeira Incid\u00EAncia");
+		JRadioButton rdbtnReplaceFirst = new JRadioButton("Primeira IncidÃªncia");
 		rdbtnReplaceFirst.setBounds(26, 61, 136, 23);
 		contentPane.add(rdbtnReplaceFirst);
 		
-		JRadioButton rdbtnReplaceAll = new JRadioButton("Todas as Incid\u00EAncias");
+		JRadioButton rdbtnReplaceAll = new JRadioButton("Todas as IncidÃªncias");
 		rdbtnReplaceAll.setBounds(178, 61, 190, 23);
 		contentPane.add(rdbtnReplaceAll);
 		
@@ -89,7 +89,7 @@ public class FormReplaceStrings extends JFrame {
 				else if (rdbtnReplaceAll.isSelected())
 					replaceString.setTypeOfReplace("ReplaceAll");
 				else{
-					JOptionPane.showMessageDialog(null, "Selecione uma opção de substituição!");
+					JOptionPane.showMessageDialog(null, "Selecione uma opÃ§Ã£o de substituiÃ§Ã£o!");
 					return;
 				}
 				
