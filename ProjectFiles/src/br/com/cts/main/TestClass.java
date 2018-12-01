@@ -14,7 +14,7 @@ import org.farng.mp3.TagException;
 
 import br.com.cts.model.FileHandler;
 
-public class MainClass {
+public class TestClass {
 	public static void main(String[] args){
 		/*String dir = "D:/D/Mùsicas/Ozzy Osbourne/1983 - Bark At The Moon";
 		dir = dir.replaceFirst("/", "//");
