@@ -78,15 +78,16 @@ public class FileHandler {
 			if(musica.substring(musica.length()-4, musica.length()).toLowerCase().equals(".mp3")){
 				//BEGIN - REPLACES
 				//musica = musica.replaceFirst(musica.substring(0, 2), "");
-				musica = musica.replaceFirst(" ", " - ");
+//				musica = musica.replaceFirst("-fts", "");
 				//musica = musica.replaceFirst("\\[", "\\(");
 				//musica = musica.replaceFirst("\\]", "\\)");
-				//musica = musica.replaceAll("_", " ");
+				musica = musica.replaceAll("_", " ");
+				musica = musica.replaceFirst(" ", " - ");
 				//musica = musica.replaceFirst(musica.substring(musica.length()-13, musica.length()-4), "");
 				//musica = musica.replaceFirst(musica.substring(0, 2), "");
 				//Remover string no final do nome do arquivo
 				
-				//musica = musica.replaceFirst(" \\(2012 - Remaster\\)", "");
+				musica = musica.replaceFirst("-RCD", "");
 				//musica = musica.replaceFirst("Deep Purple -", "");
 				//musica = musica.replaceFirst("-deep_purple-", " - ");
 				//musica = musica.replaceFirst(musica.substring(0, 1), "");
@@ -224,23 +225,25 @@ public class FileHandler {
 		//Laço responsável por iterar em cada arquivo de música
 		for (int i = 0; i < listOfFiles.length; i++){
 			String newName = listOfFiles[i].getName();
-			//Laço responsável por iterar em cada caracter de um arquivo de música determinado pelo índice do
-			//do laço anterior
 			if (listOfFiles[i].getName().substring(listOfFiles[i].getName().length()-4, listOfFiles[i].getName().length()).toLowerCase().equals(".mp3")){
+				//Laço responsável por iterar em cada caracter de um arquivo de música determinado pelo índice do
+				//do laço anterior
+				File newNameFile = null;
 				for (int j = 0; j < listOfFiles[i].getName().length(); j++){
 					//Condicional responsável por procurar a primeira letra de uma palavra e se é um caracter válido
 					if (listOfFiles[i].getName().substring(j, j+1).equals(" ") && !listOfFiles[i].getName().substring(j+1, j+2).equals("(")){
 						String replaceString = newName.substring(j, j+2); //Obtendo a primeira letra da palavra
 						newName = newName.replaceFirst(replaceString, replaceString.toUpperCase()); //tornando a primeira letra da palavra maiúscula
-						File newNameFile = new File(stringPath + newName); //Obtendo o caminho completo do arquivo
-						listOfFiles[i].renameTo(newNameFile); //renomeando o nome do arquivo
+						newNameFile = new File(stringPath + newName); //Obtendo o caminho completo do arquivo
 						//Se o caracter encontrado for um parênteses, tornar o próximo caracter maiúsculo
 					} else if (listOfFiles[i].getName().substring(j, j+1).equals("(")){
 						String replaceString = newName.substring(j, j+2);
 						newName = newName.replaceFirst('\\' + replaceString, '\\' + replaceString.toUpperCase());
-						File newNameFile = new File(stringPath + newName);
-						listOfFiles[i].renameTo(newNameFile);
+						newNameFile = new File(stringPath + newName);
 					}
+				}
+				if (newNameFile != null) {
+					listOfFiles[i].renameTo(newNameFile); //renomeando o nome do arquivo
 				}
 			}
 		}
