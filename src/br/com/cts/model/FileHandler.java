@@ -82,7 +82,7 @@ public class FileHandler {
 				//musica = musica.replaceFirst("\\[", "\\(");
 				//musica = musica.replaceFirst("\\]", "\\)");
 //				musica = musica.replaceAll("_", " ");
-				musica = musica.replaceFirst("Cat Power - Wanderer - ", "");
+				musica = musica.replaceFirst("Carne Doce - ", "");
 				//musica = musica.replaceFirst(musica.substring(musica.length()-13, musica.length()-4), "");
 				//musica = musica.replaceFirst(musica.substring(0, 2), "");
 				//Remover string no final do nome do arquivo

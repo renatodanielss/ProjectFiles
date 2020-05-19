@@ -20,7 +20,7 @@ public class TestClass {
 		dir = dir.replaceFirst("/", "//");
 		filesList(dir);*/
 		
-		String dir = JOptionPane.showInputDialog("Digite o diret�rio:"); //Chama inputbox para inserir diretório
+		String dir = JOptionPane.showInputDialog("Digite o diretório:"); //Chama inputbox para inserir diretório
 		String alterTag = JOptionPane.showInputDialog("Digite as alterações que deseja fazer:"); //Chama inputbox para informar as alterações que se deseja realizar
 		
 		//Teste se o diretório foi digitado
